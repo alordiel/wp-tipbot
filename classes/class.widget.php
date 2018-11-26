@@ -64,7 +64,7 @@ class WP_TIPBOT_Widget extends WP_Widget {
 
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 		$instance['size'] = intval( $new_instance['size'] );
-		$instance['amount'] = ( 0 !== (int) $new_instance['amount'] ) ? (float) $new_instance['amount'] : null;
+		$instance['amount'] = ( 0 != $new_instance['amount'] ) ? (float) $new_instance['amount'] : 1;
 		$instance['receiver'] = sanitize_text_field( $new_instance['receiver'] );
 		$instance['label'] = sanitize_text_field( $new_instance['label'] );
 		$instance['labelpt'] = sanitize_text_field( $new_instance['labelpt'] );
@@ -97,7 +97,7 @@ class WP_TIPBOT_Widget extends WP_Widget {
 		<!-- Ammount -->
 		<p>
 			<label for="wp-tipbot-amount"><?php esc_html_e( 'Tips amount:', 'wp-tipbot' ); ?></label>
-			<input class="widefat" id="wp-tipbot-amount" name="<?php echo $this->get_field_name( 'amount' ); ?>" type="number" min="0" value="<?php echo esc_attr( $instance['amount'] ); ?>" step="0.1" style="width:150px;"/> XRP
+			<input class="widefat" id="wp-tipbot-amount" name="<?php echo $this->get_field_name( 'amount' ); ?>" type="text" value="<?php echo esc_attr( $instance['amount'] ); ?>" step="0.1" style="width:150px;"/> XRP
 		</p>
 		
 		<!-- Account type -->
