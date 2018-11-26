@@ -18,7 +18,10 @@ This plugin will give you the option to creat a XRP tip button with your own set
 
 You can follow us on [twitter](https://twitter.com/WpTipbot) or check [our website](https://wp-tipbot.com) for more information.
 
-PS: If you really like your plugin you can support us with a tip on [our site](https://wp-tipbot.com).
+
+PS: If you have a question or a request you can use the support forum for this plugin or send an issue in the plugin's [github](https://github.com/alordiel/wp-tipbot) page.
+PS2: If you really like your plugin you can support us with a tip on [our site](https://wp-tipbot.com).
+
 == Screenshots ==
 
 1. Outlook of the WP TipBot button
