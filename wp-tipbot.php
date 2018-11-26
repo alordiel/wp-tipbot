@@ -5,7 +5,7 @@
  * Description: Displays a XRP TIP BOT button with a widget or shortcode.
  * Author: alordiel
  * Author URI: https://timelinedev.com
- * Version: 1.0.0
+ * Version: 1.0.6
  * License: GPLv2 or later
  * Domain Path: /languages
  */

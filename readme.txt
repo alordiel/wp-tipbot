@@ -1,8 +1,11 @@
 === WP-TipBot ===
 Contributors: alordiel
-Requires at least: 1.0.0
+Requires at least: 4.5
 Tested up to: 4.9.8
-Stable tag: 4.9
+Stable tag: 4.5
+Requires PHP: 5.6
+Tags:  tipbot, xrp, criptocurrency, xrptipbot, WpTipbot, Donation button, tip
+Donate link: https://wp-tipbot.com
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +32,6 @@ PS2: If you really like your plugin you can support us with a tip on [our site](
 3. WP TipBot shortcode in the Gutenberg post editor
 
 == Changelog ==
-
+* 1.0.5 Adding two more options to the widget section
 * 1.0.0 Plugin Launch
 

@@ -21,7 +21,8 @@ class WP_TIPBOT_Widget extends WP_Widget {
 			'receiver' => '',
 			'label' => '',
 			'size' => '',
-			'thanks-msg' => ''
+			'labelpt' => '',
+			'redirect' => ''
 		);
 	}
 
@@ -38,16 +39,16 @@ class WP_TIPBOT_Widget extends WP_Widget {
 		}
 
 	?>
-	
 		<!-- embed snipped code from : https://www.xrptipbot.com/account/embed  -->
 		<a
 			amount="<?php echo $instance['amount']; ?>" 
-			size="275" 
+			size="<?php echo $instance['size']; ?>" 
 			to="<?php echo $instance['receiver']; ?>" 
 			network="<?php echo $instance['network']; ?>" 
 			href="https://www.xrptipbot.com" 
 			label="<?php echo $instance['label']; ?>"
-			labelpt="<?php echo $instance['thanks-msg']; ?>"
+			labelpt="<?php echo $instance['labelpt']; ?>"
+			redirect="<?php echo $instance['redirect']; ?>"
 			target="_blank">
 		</a>
 		<script async src="https://www.xrptipbot.com/static/donate/tipper.js" charset="utf-8"></script>
@@ -62,10 +63,12 @@ class WP_TIPBOT_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
-		$instance['amount'] = ( 0 !== (int) $new_instance['amount'] ) ? (int) $new_instance['amount'] : null;
+		$instance['size'] = intval( $new_instance['size'] );
+		$instance['amount'] = ( 0 !== (int) $new_instance['amount'] ) ? (float) $new_instance['amount'] : null;
 		$instance['receiver'] = sanitize_text_field( $new_instance['receiver'] );
 		$instance['label'] = sanitize_text_field( $new_instance['label'] );
-		$instance['thanks-msg'] = sanitize_text_field( $new_instance['thanks-msg'] );
+		$instance['labelpt'] = sanitize_text_field( $new_instance['labelpt'] );
+		$instance['redirect'] = sanitize_text_field( $new_instance['redirect'] );
 
 		return $instance;
 
@@ -75,6 +78,7 @@ class WP_TIPBOT_Widget extends WP_Widget {
 	public function form( $instance ) {
 
 		$instance = wp_parse_args( (array) $instance, $this->defaults );
+		$size = $instance['size'] != 0 ? $instance['size'] : 250;
 
 		?>
 
@@ -83,11 +87,17 @@ class WP_TIPBOT_Widget extends WP_Widget {
 			<label for="wp-tipbot-title"><?php esc_html_e( 'Title:', 'wp-tipbot' ); ?></label>
 			<input class="widefat" id="wp-tipbot-title" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>"/>
 		</p>
+
+		<!-- Size -->
+		<p>
+			<label for="wp-tipbot-size"><?php esc_html_e( 'Button size:', 'wp-tipbot' ); ?></label>
+			<input class="widefat" id="wp-tipbot-size" name="<?php echo $this->get_field_name( 'size' ); ?>" type="number" min="0" value="<?php echo esc_attr( $size ); ?>" style="width:150px;"/> px.
+		</p>
 		
 		<!-- Ammount -->
 		<p>
 			<label for="wp-tipbot-amount"><?php esc_html_e( 'Tips amount:', 'wp-tipbot' ); ?></label>
-			<input class="widefat" id="wp-tipbot-amount" name="<?php echo $this->get_field_name( 'amount' ); ?>" type="number" min="0" value="<?php echo esc_attr( $instance['amount'] ); ?>"/>
+			<input class="widefat" id="wp-tipbot-amount" name="<?php echo $this->get_field_name( 'amount' ); ?>" type="number" min="0" value="<?php echo esc_attr( $instance['amount'] ); ?>" step="0.1" style="width:150px;"/> XRP
 		</p>
 		
 		<!-- Account type -->
@@ -112,10 +122,16 @@ class WP_TIPBOT_Widget extends WP_Widget {
 			<input class="widefat" id="wp-tipbot-label" name="<?php echo $this->get_field_name( 'label' ); ?>" type="text" value="<?php echo esc_attr( $instance['label'] ); ?>"/>
 		</p>
 		
-		<!-- Thank you Link -->
+		<!-- Thank you message -->
 		<p>
-			<label for="wp-tipbot-thnaks"><?php esc_html_e( 'Thank You Link:', 'wp-tipbot' ); ?></label>
-			<input class="widefat" id="wp-tipbot-thnaks" name="<?php echo $this->get_field_name( 'thanks-msg' ); ?>" type="text" value="<?php echo esc_attr( $instance['thanks-msg'] ); ?>"/>
+			<label for="wp-tipbot-labelpt"><?php esc_html_e( 'Thank you message:', 'wp-tipbot' ); ?></label>
+			<input class="widefat" id="wp-tipbot-labelpt" name="<?php echo $this->get_field_name( 'labelpt' ); ?>" type="text" value="<?php echo esc_attr( $instance['labelpt'] ); ?>"/>
+		</p>
+
+		<!-- Redirect Link -->
+		<p>
+			<label for="wp-tipbot-redirect"><?php esc_html_e( 'Redirect url after successful tip:', 'wp-tipbot' ); ?></label>
+			<input class="widefat" id="wp-tipbot-redirect" name="<?php echo $this->get_field_name( 'redirect' ); ?>" type="text" value="<?php echo esc_attr( $instance['redirect'] ); ?>"/>
 		</p>
 
 	<?php
