@@ -1,7 +1,7 @@
 === WP-TipBot ===
 Contributors: alordiel
 Requires at least: 4.5
-Tested up to: 4.9.8
+Tested up to: 5.0.0
 Stable tag: 4.5
 Requires PHP: 5.6
 Tags:  tipbot, xrp, criptocurrency, xrptipbot, WpTipbot, Donation button, tip

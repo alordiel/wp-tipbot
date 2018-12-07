@@ -6,8 +6,8 @@ function wp_tipbot_shortcode( $atts ) {
 	
 	$a = shortcode_atts( array(
 		'title' => esc_html__( 'WP TIPBOT', 'wp-tipbot' ),
-		'amount' => 1,
-		'network' => 'twitter',
+		'amount' => '',
+		'network' => '',
 		'receiver' => '',
 		'label' => '',
 		'size' => '',
@@ -15,15 +15,33 @@ function wp_tipbot_shortcode( $atts ) {
 		'redirect' => 'https://wp-tipbot.com/thank-you/',
 	), $atts );
 
+	$settings = get_option('wp_tipbot_settings', false);
+	$settings = (	$settings != false) ? unserialize($settings) : [];
+
+	$amount = $atts['amount'];
+	$size = $atts['size'];
+	$receiver = $atts['receiver'];
+	$network = $atts['network'];
+
 	$label = (!empty($atts['label'])) ?  "label='{$atts['label']}'"  : '';
 	$labelpt = (!empty($atts['labelpt'])) ? "labelpt='{$atts['labelpt']}'"  : '';
 	$redirect = (!empty($atts['redirect'])) ? "redirect='{$atts['redirect']}'"  : '';
+
+	$size = ( $size == '' && !empty($settings['size']) ) ? $settings['size'] : 250;
+	$amount = ( $amount == '' && !empty($settings['amount']) ) ? $settings['amount'] : 1;
+	$receiver = ( $receiver == '' && !empty($settings['receiver']) ) ? $settings['receiver'] : '';
+	$network = ( $network == '' && !empty($settings['network']) ) ? $settings['network'] : 'twitter';
+	
+	$label = ( $label == '' && !empty($settings['label']) ) ?  "label='{$settings['label']}'" : '';
+	$labelpt = ( $labelpt == '' && !empty($settings['labelpt']) ) ? "labelpt='{$settings['labelpt']}'" : '';
+	$redirect = ( $redirect == '' && !empty($settings['redirect']) ) ? "redirect='{$settings['redirect']}'" : '';
+
 	$output = "<div class='wp-tipbot-container'>
 		<a
-			amount='".$atts['amount']."'
-			size='".$atts['size']."'
-			to='".$atts['receiver']."'
-			network='".$atts['network']."'
+			amount='".$amount."'
+			size='".$size."'
+			to='".$receiver."'
+			network='".$network."'
 			href='https://www.xrptipbot.com'
 			target='_blank' 
 			$label 
