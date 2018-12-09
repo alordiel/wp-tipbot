@@ -1,0 +1,112 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP TipBot\n"
+"POT-Creation-Date: 2018-12-07 14:24+0200\n"
+"PO-Revision-Date: 2018-12-07 14:24+0200\n"
+"Last-Translator: \n"
+"Language-Team: wp-tipbot <office@timeline.dev>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: classes/class.widget.php:13
+msgid "Displays a XRP TIP BOT widget."
+msgstr ""
+
+#: functions/settings.php:6 functions/settings.php:7
+msgid "WP TipBot"
+msgstr ""
+
+#: functions/settings.php:66
+msgid "WP TipBot Details"
+msgstr ""
+
+#: functions/settings.php:69
+msgid "Main settings"
+msgstr ""
+
+#: functions/settings.php:72
+msgid "Balance"
+msgstr ""
+
+#: functions/settings.php:75
+msgid "Support"
+msgstr ""
+
+#: functions/settings.php:76
+msgid "Tips"
+msgstr ""
+
+#: functions/settings.php:80
+msgid ""
+"Setting below will open a new tab in the current page with your XRPTIPBOT "
+"balance. Also you can use the shortcode as <code>[wp-tipbot]</code> without "
+"setting any"
+msgstr ""
+
+#: functions/settings.php:142
+msgid "How to use the shortcode?"
+msgstr ""
+
+#: functions/settings.php:143
+msgid "Here is an example how to it:"
+msgstr ""
+
+#: functions/settings.php:146
+msgid "And here are the shortcode attributes that you can change:"
+msgstr ""
+
+#: functions/settings.php:148
+msgid "Width of Button in Px (Default 250, don't include the \"px\" string)"
+msgstr ""
+
+#: functions/settings.php:149
+msgid "Tip amount of XRP"
+msgstr ""
+
+#: functions/settings.php:150
+msgid "Username at XRP Tip Bot"
+msgstr ""
+
+#: functions/settings.php:151
+msgid ""
+"The network you used to register at XRP Tip Bot (Use: \"twitter\", \"reddit"
+"\" or \"discord\")"
+msgstr ""
+
+#: functions/settings.php:152
+msgid "the text before tipping"
+msgstr ""
+
+#: functions/settings.php:153
+msgid "the text after tipping"
+msgstr ""
+
+#: functions/settings.php:154
+msgid "to redirect the user to a page after sending you a tip (not requered)"
+msgstr ""
+
+#: functions/settings.php:157
+msgid "Note:"
+msgstr ""
+
+#: functions/settings.php:157
+msgid ""
+"You can use the simplified version [wp-tipbot] when you have saved the "
+"settings from the previous tab. Those settings will be used by default if "
+"you are missing some of the attributes of the shortcode."
+msgstr ""
+
+#: functions/settings.php:159
+#, php-format
+msgid ""
+"For bugs and other support questions - please use the <a href=\"%s"
+"\">WordPress Support forum</a>."
+msgstr ""

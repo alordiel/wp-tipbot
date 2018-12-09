@@ -18,10 +18,10 @@ function wp_tipbot_shortcode( $atts ) {
 	$settings = get_option('wp_tipbot_settings', false);
 	$settings = (	$settings != false) ? unserialize($settings) : [];
 
-	$amount = $atts['amount'];
-	$size = $atts['size'];
-	$receiver = $atts['receiver'];
-	$network = $atts['network'];
+	$amount = !empty ($atts['amount']) ? $atts['amount'] : '';
+	$size = !empty ($atts['size']) ? $atts['size'] : '';
+	$receiver = !empty ($atts['receiver']) ? $atts['receiver'] : '';
+	$network = !empty ($atts['network']) ? $atts['network'] : '';
 
 	$label = (!empty($atts['label'])) ?  "label='{$atts['label']}'"  : '';
 	$labelpt = (!empty($atts['labelpt'])) ? "labelpt='{$atts['labelpt']}'"  : '';

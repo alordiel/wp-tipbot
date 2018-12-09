@@ -32,6 +32,13 @@ PS2: If you really like your plugin you can support us with a tip on [our site](
 3. WP TipBot shortcode in the Gutenberg post editor
 
 == Changelog ==
+= 1.1.0 =
+* Added code localization and po file - ready for translation
+* Added settings form for default attributes for the shortcode
+* Added XRPTipBot balance page in the admin
+* Tested with WordPress 5.0 and Twenty-Nineteen theme
+
+= Small fixes =
 * 1.0.7 Fixing issue with decimal values for the tip
 * 1.0.6 Fixing issues with taging in the WP repo
 * 1.0.5 Adding two more options to the widget section

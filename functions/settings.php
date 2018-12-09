@@ -21,7 +21,7 @@ function wp_tipbot_settings_page () {
 	}
 
 	if (!empty($_POST['amount']) ){
-		$settings['amount'] = intval( $_POST['amount'] );
+		$settings['amount'] = floatval( $_POST['amount'] );
 	}
 
 	if (!empty($_POST['receiver']) ){
@@ -133,7 +133,7 @@ function wp_tipbot_settings_page () {
 		<?php if ($receiver != '' && $network != '') { ?>
 
 			<div class="tab-member tipbot-balance">
-				<iframe style="width: 100%; min-height: 500px;height: auto;" src="https://www.xrptipbot.com/u:<?php echo $receiver ?>/n:<?php echo $network ?>." frameborder="0"></iframe>
+				<iframe style="width: 100%; min-height: 500px;height: auto;" src="https://www.xrptipbot.com/u:<?php echo $receiver ?>/n:<?php echo $network ?>" frameborder="0"></iframe>
 			</div>
 
 		<?php } ?>
