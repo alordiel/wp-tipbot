@@ -72,23 +72,24 @@ function wp_tipbot_settings_page () {
 				<li data-activate-tab='tipbot-balance'><?php _e('Balance','wp-tipbot');?> </li>
 			<?php } ?>
 
-			<li data-activate-tab='tipbot-help'><?php _e('Support','wp-tipbot');?> </li>
-			<li data-activate-tab='tipbot-donations'><?php _e('Tips','wp-tipbot');?> </li>
+			<li data-activate-tab='tipbot-help'><?php _e('Shortcode','wp-tipbot');?> </li>
+			<li data-activate-tab='tipbot-donations'><?php _e('Support','wp-tipbot');?> </li>
 		</ul>
 
+
 		<div class="tab-member tipbot-settings active">
-			<?php _e('Setting below will open a new tab in the current page with your XRPTIPBOT balance. Also you can use the shortcode as <code>[wp-tipbot]</code> without setting any') ?>
-			<form name="form1" method="post" action="">
+			<?php _e('Please set your default values! Once filled, you can simply use the [wp-tipbot] shortcode.','wp-tipbot') ?>
+			<form name="form-what-ever" method="post" action="">
 				<!-- Size -->
 				<p>
 					<label for="wp-tipbot-size"><?php esc_html_e( 'Button size:', 'wp-tipbot' ); ?></label>
-					<input class="widefat" id="wp-tipbot-size" name="size" type="number" min="0" value="<?php echo esc_attr( $size ); ?>" style="width:150px;"/> px
+					<input class="widefat" id="wp-tipbot-size" name="size" type="number" min="0" value="<?php echo esc_attr( $size ); ?>" style="width:150px;"/> px (<?php _e('This will change the width of the button.','wp-tipbot') ?>)
 				</p>
 				
 				<!-- Ammount -->
 				<p>
 					<label for="wp-tipbot-amount"><?php esc_html_e( 'Tips amount:', 'wp-tipbot' ); ?></label>
-					<input class="widefat" id="wp-tipbot-amount" name="amount" type="text" value="<?php echo esc_attr($amount); ?>" step="0.1" style="width:150px;"/> XRP
+					<input class="widefat" id="wp-tipbot-amount" name="amount" type="text" value="<?php echo esc_attr($amount); ?>" step="0.1" style="width:150px;"/> XRP (<?php _e('The tip amount of XRP you want to receive.','wp-tipbot') ?>)
 				</p>
 				
 				<!-- Account type -->
@@ -99,30 +100,31 @@ function wp_tipbot_settings_page () {
 						<option <?php if ($network=="reddit") echo 'selected' ?> value="reddit">reddit</option>
 						<option <?php if ($network=="discord") echo 'selected' ?> value="discord">Discord</option>
 					</select>
+					(<?php echo sprintf(__('The network your XRP Tip Bot account is linked to. Don’t have a XRP Tip Bot account? Get one <a href="%s">here</a>.','wp-tipbot'),"https://www.xrptipbot.com/?login=do"); ?>)
 				</p>
 
 				<!-- Receiver -->
 				<p>
 					<label for="wp-tipbot-receiver"><?php esc_html_e( 'Receiver Username:', 'wp-tipbot' ); ?></label>
-					<input class="widefat" id="wp-tipbot-receiver" name="receiver" type="text" value="<?php echo esc_attr($receiver); ?>"  style="width:250px;"/>
+					<input class="widefat" id="wp-tipbot-receiver" name="receiver" type="text" value="<?php echo esc_attr($receiver); ?>"  style="width:250px;"/>  (<?php _e('Your username of the network which is linked to XRP Tip Bot.','wp-tipbot') ?>)
 				</p>
 				
 				<!-- Button Label -->
 				<p>
 					<label style="min-width: 200px" for="wp-tipbot-label"><?php esc_html_e( 'Button label:', 'wp-tipbot' ); ?></label>
-					<input class="widefat" id="wp-tipbot-label" name="label" type="text" value="<?php echo esc_attr($label); ?>"  style="width:250px;"/>
+					<input class="widefat" id="wp-tipbot-label" name="label" type="text" value="<?php echo esc_attr($label); ?>"  style="width:250px;"/>  (<?php _e('The text which is shown on the button.','wp-tipbot') ?>)
 				</p>
 				
 				<!-- Thank you message -->
 				<p>
 					<label style="min-width: 200px" for="wp-tipbot-labelpt"><?php esc_html_e( 'Thank you message:', 'wp-tipbot' ); ?></label>
-					<input  style="width:250px;" class="widefat" id="wp-tipbot-labelpt" name="labelpt" type="text" value="<?php echo esc_attr($labelpt); ?>"/>
+					<input  style="width:250px;" class="widefat" id="wp-tipbot-labelpt" name="labelpt" type="text" value="<?php echo esc_attr($labelpt); ?>"/>  (<?php _e('The text which is shown on the button, once the user send you a tip.','wp-tipbot') ?>)
 				</p>
 
 				<!-- Redirect Link -->
 				<p>
 					<label style="min-width: 200px" for="wp-tipbot-redirect"><?php esc_html_e( 'Redirect url:', 'wp-tipbot' ); ?></label>
-					<input  style="width:250px;" class="widefat" id="wp-tipbot-redirect" name="redirect" type="text" value="<?php echo esc_attr($redirect); ?>"/>
+					<input  style="width:250px;" class="widefat" id="wp-tipbot-redirect" name="redirect" type="text" value="<?php echo esc_attr($redirect); ?>"/>  (<?php _e('You can redirect the user to a specific page, once he send you a tip.','wp-tipbot') ?>)
 				</p>
 				<p class="submit">
 					<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_html_e( 'Save Changes', 'wp-tipbot' ); ?>">
@@ -130,6 +132,7 @@ function wp_tipbot_settings_page () {
 			</form>
 		</div>
 		
+
 		<?php if ($receiver != '' && $network != '') { ?>
 
 			<div class="tab-member tipbot-balance">
@@ -138,51 +141,90 @@ function wp_tipbot_settings_page () {
 
 		<?php } ?>
 
+
 		<div class="tab-member tipbot-help">
 			<h2><?php _e('How to use the shortcode?','easyexam') ?></h2>
 				<p><?php _e('Here is an example how to it:','wp-tipbot') ?></p>
 				<p><pre><code>[wp-tipbot size="250" amount="0.5" receiver="WpTipbot" network="twitter" label="Tip me" labelpt="Thaaaanks" redirect="https://wp-tipbot.com/thank-you/"]</code></pre></p>
 				<p>
-					<?php _e('And here are the shortcode attributes that you can change:','wp-tipbot'); ?>	
-					<ul>
-			    <li><strong>size</strong> - <?php _e('Width of Button in Px (Default 250, don\'t include the "px" string)','wp-tipbot'); ?></li>
-			    <li><strong>amount</strong> - <?php _e('Tip amount of XRP','wp-tipbot'); ?></li>
-			    <li><strong>receiver</strong> - <?php _e('Username at XRP Tip Bot','wp-tipbot'); ?></li>
-			    <li><strong>network</strong> - <?php _e('The network you used to register at XRP Tip Bot (Use: "twitter", "reddit" or "discord")','wp-tipbot'); ?></li>
-			    <li><strong>label</strong> - <?php _e('the text before tipping','wp-tipbot'); ?></li>
-			    <li><strong>labelpt</strong> - <?php _e('the text after tipping','wp-tipbot'); ?></li>
-			    <li><strong>redirect</strong> - <?php _e('to redirect the user to a page after sending you a tip (not requered)','wp-tipbot'); ?></li>
-				  </ul>
-				</p>
-				<p><b><?php _e('Note:','wp-tipbot') ?></b> <?php _e('You can use the simplified version [wp-tipbot] when you have saved the settings from the previous tab. Those settings will be used by default if you are missing some of the attributes of the shortcode.','wp-tipbot') ?></p>
-				<br>
-				<p><?php echo sprintf(__('For bugs and other support questions - please use the <a href="%s">WordPress Support forum</a>.','wp-tipbot'),'https://wordpress.org/support/plugin/wp-tipbot'); ?></p>
+					<?php _e('And here are the shortcode attributes that you can use:','wp-tipbot'); ?>	
+					<table id="shortcode-details">
+						<tbody>
+							<tr>
+								<td>[wp-tipbot]</td>
+								<td><?php _e('Uses the values from the default settings.','wp-tipbot') ?></td>
+							</tr>
+							<tr>
+								<td>[wp-tipbot <strong>size</strong>="250"]</td>
+								<td><?php _e('This will change the width of the button in px.','wp-tipbot') ?></td>
+							</tr>
+							<tr>
+								<td>[wp-tipbot <strong>amount</strong>="0.5"]</td>
+								<td><?php _e('The tip amount of XRP you want to receive.','wp-tipbot') ?></td>
+							</tr>
+							<tr>
+								<td>[wp-tipbot <strong>receiver</strong>="name"]</td>
+								<td><?php _e('Your username of the network which is linked to XRP Tip Bot.','wp-tipbot') ?></td>
+							</tr>
+							<tr>
+								<td>[wp-tipbot <strong>network</strong>="twitter"]</td>
+								<td><?php echo sprintf(__('The network your XRP Tip Bot account is linked to. (Use: "twitter", "reddit" or "discord")<br><small>Don’t have a XRP Tip Bot account? Get one <a href="%s">here</a>.</small>','wp-tipbot'),"https://www.xrptipbot.com/?login=do") ?></td>
+							</tr>
+							<tr>
+								<td>[wp-tipbot <strong>label</strong>="Tip"]</td>
+								<td><?php _e('The text which is shown on the button.','wp-tipbot') ?></td>
+							</tr>
+							<tr>
+								<td>[wp-tipbot <strong>labelpt</strong>="Thaaaanks"]</td>
+								<td><?php _e('The text which is shown on the button, once the user send you a tip.','wp-tipbot') ?></td>
+							</tr>
+							<tr>
+								<td>[wp-tipbot <strong>redirect</strong>="https://wp-tipbot/thank-you/"]</td>
+								<td><?php _e('You can redirect the user to a specific page, once he send you a tip.','wp-tipbot') ?></td>
+							</tr>
+						</tbody>
+					</table>
+				</p>		
 		</div>
 
-		<div class="tab-member tipbot-donations">
-			<p>Do you find our plugin very useful for your website? Do you want to share your story with us about it? <br>We are opened for your case of use on our <a href="https://wp-tipbot.com/story">website</a>. Sharing your story with us is a win-win - we will post it on our blog and twitter and you will get some extra attention from the community. </p>
 
-			<p>And if you like our plugin, please consider sharing some tips with us</p>
+		<div class="tab-member tipbot-donations">
+			<p><?php echo sprintf(__('Tell us about your project and how the WP-Tipbot plugin helps to monetize your content. Sharing your story with us is a win-win - we will post it on our <a href="%s" target="_blank" rel="nofollow noopener">blog</a> and <a href="%s" target="_blank" rel="nofollow noopener">twitter</a> and you will get some extra attention from the community.','wp-tipbot'),"https://wp-tipbot.com/story","https://twitter.com/WpTipbot")?></p>
+
+			<p><?php _e('And if you like our plugin, please consider sharing some tips with us','wp-tipbot') ?></p>
 
 			<?php
 			echo do_shortcode( '[wp-tipbot size="250" amount="0.5" receiver="WpTipbot" network="twitter" label="Tip me" labelpt="Thaaaanks" redirect="https://wp-tipbot.com/thank-you/"]' );
 			?>
-			
-			<p>You can follow us on <a href="https://twitter.com/WpTipbot" target="_blank" rel="nofollow noopener"> twitter (@WpTipbot)</a> or check <a href="https://wp-tipbot.com" target="_blank" rel="nofollow noopener">our website</a>.</p>
 
+			<p><?php echo sprintf(__('For bugs and other support questions - please use the <a href="%s">WordPress Support forum</a>.','wp-tipbot'),'https://wordpress.org/support/plugin/wp-tipbot'); ?></p>
+			<p><?php echo sprintf(__('Find us on <a href="%s" target="_blank" rel="nofollow noopener">twitter (@WpTipbot)</a> or check <a href="%s" target="_blank" rel="nofollow noopener">our website</a>.','wp-tipbot'),"https://twitter.com/WpTipbot","https://wp-tipbot.com")?></p>
 		</div>
+
+
 	</div>
 
 	<script>
 
 		jQuery( function($) {
+
+			// controlls for the tabs
 			$('.tipbot-tabs li').on('click', function () {
 				$('.tipbot-tabs li.active').removeClass('active');
 				$('.tab-member.active').removeClass('active');
 				$(this).addClass('active');
-				let showTab = $(this).data('activate-tab');
+				var showTab = $(this).data('activate-tab');
 				$('.'+showTab).addClass('active');
 			});
+
+			// strip @ sign form any string entered in the receiver field
+			$('#wp-tipbot-receiver').on('blur',function() {
+
+				var value = $(this).val().replace(/@/g,'');
+				$(this).val(value);
+
+			});
+
 		});
 
 	</script>
@@ -223,6 +265,15 @@ function wp_tipbot_settings_page () {
 
 		.tab-member.active{
 			display: block;
+		}
+
+		#shortcode-details {
+			border-collapse: collapse;
+		}
+
+		#shortcode-details td {
+			border: 1px solid #ccc;
+			padding: 7px 9px;
 		}
 	</style>
 	<?php
