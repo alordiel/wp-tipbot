@@ -16,35 +16,35 @@ function wp_tipbot_settings_page () {
 	$settings = get_option('wp_tipbot_settings', false);
 	$settings = (	$settings != false) ? unserialize($settings) : [];
 
-	if (!empty($_POST['size']) ){
-		$settings['size'] = intval( $_POST['size'] );
-	}
+	if (!empty($_POST) && count($_POST) > 0) {
 
-	if (!empty($_POST['amount']) ){
-		$settings['amount'] = floatval( $_POST['amount'] );
-	}
+		if ( isset($_POST['size']) ){
+			$settings['size'] = intval( $_POST['size'] );
+		}
 
-	if (!empty($_POST['receiver']) ){
-		$settings['receiver'] = sanitize_text_field( $_POST['receiver'] );
-	}
+		if ( isset($_POST['amount']) ){
+			$settings['amount'] = floatval( $_POST['amount'] );
+		}
 
-	if (!empty($_POST['network']) ){
-		$settings['network'] = sanitize_text_field( $_POST['network'] );
-	}
+		if ( isset($_POST['receiver']) ){
+			$settings['receiver'] = sanitize_text_field( $_POST['receiver'] );
+		}
 
-	if (!empty($_POST['label']) ){
-		$settings['label'] = sanitize_text_field( $_POST['label'] );
-	}
+		if ( isset($_POST['network']) ){
+			$settings['network'] = sanitize_text_field( $_POST['network'] );
+		}
 
-	if (!empty($_POST['labelpt']) ){
-		$settings['labelpt'] = sanitize_text_field( $_POST['labelpt'] );
-	}
+		if ( isset($_POST['label']) ){
+			$settings['label'] = sanitize_text_field( $_POST['label'] );
+		}
 
-	if (!empty($_POST['redirect']) ){
-		$settings['redirect'] = sanitize_text_field( $_POST['redirect'] );
-	}
+		if ( isset($_POST['labelpt']) ){
+			$settings['labelpt'] = sanitize_text_field( $_POST['labelpt'] );
+		}
 
-	if (!empty($_POST)) {
+		if ( isset($_POST['redirect']) ){
+			$settings['redirect'] = sanitize_text_field( $_POST['redirect'] );
+		}
 
 		update_option( 'wp_tipbot_settings', serialize($settings) );
 
@@ -94,7 +94,7 @@ function wp_tipbot_settings_page () {
 				<!-- Account type -->
 				<p>
 					<label style="min-width: 200px" for="wp-tipbot-network"><?php esc_html_e( 'Network:', 'wp-tipbot' ); ?></label>
-					<select name="networ" id="wp-tipbot-network"  style="width:250px;">
+					<select name="network" id="wp-tipbot-network"  style="width:250px;">
 						<option <?php if ($network=="twitter") echo 'selected' ?> value="twitter">Twitter</option>
 						<option <?php if ($network=="reddit") echo 'selected' ?> value="reddit">reddit</option>
 						<option <?php if ($network=="discord") echo 'selected' ?> value="discord">Discord</option>
