@@ -12,7 +12,7 @@ function wp_tipbot_shortcode( $atts ) {
 		'label' => '',
 		'size' => '',
 		'labelpt' => '',
-		'redirect' => 'https://wp-tipbot.com/thank-you/',
+		'redirect' => '',
 	), $atts );
 
 	// get the shortcode attributes
