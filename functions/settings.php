@@ -42,10 +42,6 @@ function wp_tipbot_settings_page () {
 			$settings['labelpt'] = sanitize_text_field( $_POST['labelpt'] );
 		}
 
-		if ( isset($_POST['redirect']) ){
-			$settings['redirect'] = sanitize_text_field( $_POST['redirect'] );
-		}
-
 		update_option( 'wp_tipbot_settings', serialize($settings) );
 
 	}
@@ -56,7 +52,6 @@ function wp_tipbot_settings_page () {
 	$network = !empty($settings['network']) ? $settings['network'] : 'twitter';
 	$label = !empty($settings['label']) ? $settings['label'] : '';
 	$labelpt = !empty($settings['labelpt']) ? $settings['labelpt'] : '';
-	$redirect = !empty($settings['redirect']) ? $settings['redirect'] : '';
 
 	?>
 
@@ -121,11 +116,6 @@ function wp_tipbot_settings_page () {
 					<input  style="width:250px;" class="widefat" id="wp-tipbot-labelpt" name="labelpt" type="text" value="<?php echo esc_attr($labelpt); ?>"/>  (<?php _e('The text which is shown on the button, once the user send you a tip.','wp-tipbot') ?>)
 				</p>
 
-				<!-- Redirect Link -->
-				<p>
-					<label style="min-width: 200px" for="wp-tipbot-redirect"><?php esc_html_e( 'Redirect url:', 'wp-tipbot' ); ?></label>
-					<input  style="width:250px;" class="widefat" id="wp-tipbot-redirect" name="redirect" type="text" value="<?php echo esc_attr($redirect); ?>"/>  (<?php _e('You can redirect the user to a specific page, once he send you a tip.','wp-tipbot') ?>)
-				</p>
 				<p class="submit">
 					<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php esc_html_e( 'Save Changes', 'wp-tipbot' ); ?>">
 				</p>
@@ -145,7 +135,7 @@ function wp_tipbot_settings_page () {
 		<div class="tab-member tipbot-help">
 			<h2><?php _e('How to use the shortcode?','easyexam') ?></h2>
 				<p><?php _e('Here is an example how to it:','wp-tipbot') ?></p>
-				<p><pre><code>[wp-tipbot size="250" amount="0.5" receiver="WpTipbot" network="twitter" label="Tip me" labelpt="Thaaaanks" redirect="https://wp-tipbot.com/thank-you/"]</code></pre></p>
+				<p><pre><code>[wp-tipbot size="250" amount="0.5" receiver="WpTipbot" network="twitter" label="Tip me" labelpt="Thaaaanks"]</code></pre></p>
 				<p>
 					<?php _e('And here are the shortcode attributes that you can use:','wp-tipbot'); ?>	
 					<table id="shortcode-details">
@@ -178,10 +168,6 @@ function wp_tipbot_settings_page () {
 								<td>[wp-tipbot <strong>labelpt</strong>="Thaaaanks"]</td>
 								<td><?php _e('The text which is shown on the button, once the user send you a tip.','wp-tipbot') ?></td>
 							</tr>
-							<tr>
-								<td>[wp-tipbot <strong>redirect</strong>="https://wp-tipbot/thank-you/"]</td>
-								<td><?php _e('You can redirect the user to a specific page, once he send you a tip.','wp-tipbot') ?></td>
-							</tr>
 						</tbody>
 					</table>
 				</p>		
@@ -194,7 +180,7 @@ function wp_tipbot_settings_page () {
 			<p><?php _e('And if you like our plugin, please consider sharing some tips with us','wp-tipbot') ?></p>
 
 			<?php
-			echo do_shortcode( '[wp-tipbot size="250" amount="0.5" receiver="WpTipbot" network="twitter" label="Tip me" labelpt="Thaaaanks" redirect="https://wp-tipbot.com/thank-you/"]' );
+			echo do_shortcode( '[wp-tipbot size="250" amount="0.5" receiver="WpTipbot" network="twitter" label="Tip me" labelpt="Thaaaanks"]' );
 			?>
 
 			<p><?php echo sprintf(__('For bugs and other support questions - please use the <a href="%s">WordPress Support forum</a>.','wp-tipbot'),'https://wordpress.org/support/plugin/wp-tipbot'); ?></p>

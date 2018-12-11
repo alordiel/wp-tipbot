@@ -22,7 +22,6 @@ class WP_TIPBOT_Widget extends WP_Widget {
 			'label' => '',
 			'size' => '',
 			'labelpt' => '',
-			'redirect' => ''
 		);
 	}
 
@@ -48,7 +47,6 @@ class WP_TIPBOT_Widget extends WP_Widget {
 			href="https://www.xrptipbot.com" 
 			label="<?php echo $instance['label']; ?>"
 			labelpt="<?php echo $instance['labelpt']; ?>"
-			redirect="<?php echo $instance['redirect']; ?>"
 			target="_blank">
 		</a>
 		<script async src="https://www.xrptipbot.com/static/donate/tipper.js" charset="utf-8"></script>
@@ -68,7 +66,6 @@ class WP_TIPBOT_Widget extends WP_Widget {
 		$instance['receiver'] = sanitize_text_field( $new_instance['receiver'] );
 		$instance['label'] = sanitize_text_field( $new_instance['label'] );
 		$instance['labelpt'] = sanitize_text_field( $new_instance['labelpt'] );
-		$instance['redirect'] = sanitize_text_field( $new_instance['redirect'] );
 
 		return $instance;
 
@@ -126,12 +123,6 @@ class WP_TIPBOT_Widget extends WP_Widget {
 		<p>
 			<label for="wp-tipbot-labelpt"><?php esc_html_e( 'Thank you message:', 'wp-tipbot' ); ?></label>
 			<input class="widefat" id="wp-tipbot-labelpt" name="<?php echo $this->get_field_name( 'labelpt' ); ?>" type="text" value="<?php echo esc_attr( $instance['labelpt'] ); ?>"/>
-		</p>
-
-		<!-- Redirect Link -->
-		<p>
-			<label for="wp-tipbot-redirect"><?php esc_html_e( 'Redirect url after successful tip:', 'wp-tipbot' ); ?></label>
-			<input class="widefat" id="wp-tipbot-redirect" name="<?php echo $this->get_field_name( 'redirect' ); ?>" type="text" value="<?php echo esc_attr( $instance['redirect'] ); ?>"/>
 		</p>
 
 	<?php

@@ -1,6 +1,6 @@
 <?php
 
-// [wp-tipbot size="200" amount="0.5" receiver="alordiel" network="reddit" label="Tip me" labelpt="Thaaaanks" redirect="https://wp-tipbot.com/thank-you/"]
+// [wp-tipbot size="200" amount="0.5" receiver="alordiel" network="reddit" label="Tip me" labelpt="Thaaaanks"]
 add_shortcode( 'wp-tipbot', 'wp_tipbot_shortcode' );
 function wp_tipbot_shortcode( $atts ) {
 	
@@ -12,7 +12,6 @@ function wp_tipbot_shortcode( $atts ) {
 		'label' => '',
 		'size' => '',
 		'labelpt' => '',
-		'redirect' => '',
 	), $atts );
 
 	// get the shortcode attributes
@@ -22,7 +21,6 @@ function wp_tipbot_shortcode( $atts ) {
 	$network 	= !empty( $sc_atts['network'] ) ? $sc_atts['network'] : '';
 	$label 		= !empty( $sc_atts['label'] ) ? "label='{$sc_atts['label']}'"  : '';
 	$labelpt 	= !empty( $sc_atts['labelpt'] ) ? "labelpt='{$sc_atts['labelpt']}'"  : '';
-	$redirect = !empty( $sc_atts['redirect'] ) ? "redirect='{$sc_atts['redirect']}'"  : '';
 
 	// get the settings for the plugin
 	$settings = get_option('wp_tipbot_settings', false);
@@ -64,11 +62,6 @@ function wp_tipbot_shortcode( $atts ) {
 
 	}
 
-	if ( $redirect == '') {
-
-		$redirect = !empty($settings['redirect']) ? "redirect='{$settings['redirect']}'" : '';
-
-	}
  	
 	// check if any receiver
 	if ($receiver == '') {
@@ -87,8 +80,7 @@ function wp_tipbot_shortcode( $atts ) {
 			href='https://www.xrptipbot.com'
 			target='_blank' 
 			$label 
-			$labelpt 
-			$redirect >
+			$labelpt>
 		</a>
 	</div>
 	<script async src='https://www.xrptipbot.com/static/donate/tipper.js' charset='utf-8'></script>";
