@@ -4,7 +4,7 @@
 add_shortcode( 'wp-tipbot', 'wp_tipbot_shortcode' );
 function wp_tipbot_shortcode( $atts ) {
 	
-	$a = shortcode_atts( array(
+	$sc_atts = shortcode_atts( array(
 		'title' => esc_html__( 'WP TIPBOT', 'wp-tipbot' ),
 		'amount' => '',
 		'network' => '',
@@ -15,27 +15,69 @@ function wp_tipbot_shortcode( $atts ) {
 		'redirect' => 'https://wp-tipbot.com/thank-you/',
 	), $atts );
 
+	// get the shortcode attributes
+	$amount 	= !empty( $sc_atts['amount'] ) ? $sc_atts['amount'] : '';
+	$size 		= !empty( $sc_atts['size'] ) ? $sc_atts['size'] : '';
+	$receiver = !empty( $sc_atts['receiver'] ) ? $sc_atts['receiver'] : '';
+	$network 	= !empty( $sc_atts['network'] ) ? $sc_atts['network'] : '';
+	$label 		= !empty( $sc_atts['label'] ) ? "label='{$sc_atts['label']}'"  : '';
+	$labelpt 	= !empty( $sc_atts['labelpt'] ) ? "labelpt='{$sc_atts['labelpt']}'"  : '';
+	$redirect = !empty( $sc_atts['redirect'] ) ? "redirect='{$sc_atts['redirect']}'"  : '';
+
+	// get the settings for the plugin
 	$settings = get_option('wp_tipbot_settings', false);
 	$settings = (	$settings != false) ? unserialize($settings) : [];
 
-	$amount = !empty ($atts['amount']) ? $atts['amount'] : '';
-	$size = !empty ($atts['size']) ? $atts['size'] : '';
-	$receiver = !empty ($atts['receiver']) ? $atts['receiver'] : '';
-	$network = !empty ($atts['network']) ? $atts['network'] : '';
+	// check for pre-default values from the settings page
+	if ( $size == '' ) {
 
-	$label = (!empty($atts['label'])) ?  "label='{$atts['label']}'"  : '';
-	$labelpt = (!empty($atts['labelpt'])) ? "labelpt='{$atts['labelpt']}'"  : '';
-	$redirect = (!empty($atts['redirect'])) ? "redirect='{$atts['redirect']}'"  : '';
+		$size = !empty($settings['size']) ? $settings['size'] : 250;
 
-	$size = ( $size == '' && !empty($settings['size']) ) ? $settings['size'] : 250;
-	$amount = ( $amount == '' && !empty($settings['amount']) ) ? $settings['amount'] : 1;
-	$receiver = ( $receiver == '' && !empty($settings['receiver']) ) ? $settings['receiver'] : '';
-	$network = ( $network == '' && !empty($settings['network']) ) ? $settings['network'] : 'twitter';
-	
-	$label = ( $label == '' && !empty($settings['label']) ) ?  "label='{$settings['label']}'" : '';
-	$labelpt = ( $labelpt == '' && !empty($settings['labelpt']) ) ? "labelpt='{$settings['labelpt']}'" : '';
-	$redirect = ( $redirect == '' && !empty($settings['redirect']) ) ? "redirect='{$settings['redirect']}'" : '';
+	}
 
+	if ( $amount == '' ) {
+
+		$amount = !empty($settings['amount']) ? $settings['amount'] : 1;
+
+	}
+
+	if ( $receiver == '' ) {
+
+		$receiver = !empty($settings['receiver']) ? $settings['receiver'] : '';
+
+	}
+
+	if ($network == '') {
+
+		$network = !empty($settings['network']) ? $settings['network'] : 'twitter';
+
+	}
+
+	if ($label == '' ) {
+
+		$label = !empty($settings['label']) ?  "label='{$settings['label']}'" : '';
+	}
+
+	if ($labelpt == '') {
+
+		$labelpt = !empty($settings['labelpt']) ? "labelpt='{$settings['labelpt']}'" : '';
+
+	}
+
+	if ( $redirect == '') {
+
+		$redirect = !empty($settings['redirect']) ? "redirect='{$settings['redirect']}'" : '';
+
+	}
+ 	
+	// check if any receiver
+	if ($receiver == '') {
+
+		return '';
+
+	}
+
+	// build the shortcode
 	$output = "<div class='wp-tipbot-container'>
 		<a
 			amount='".$amount."'
