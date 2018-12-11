@@ -19,6 +19,8 @@ Thanks to Wietse Wind and his [XRP Tip Bot](https://www.xrptipbot.com/howto) you
 
 This plugin will give you the option to creat a XRP tip button with your own settings like ammount of the tip, and thank you message.
 
+A settings page has been added in version 1.1.0 where you can set the default values for your shortcode. Also saving the 'network' and 'receiver' values will open a new tab for your with the related balance for the selected account (see img.5).
+
 You can follow us on [twitter](https://twitter.com/WpTipbot) or check [our website](https://wp-tipbot.com) for more information.
 
 
@@ -30,6 +32,9 @@ PS2: If you really like your plugin you can support us with a tip on [our site](
 1. Outlook of the WP TipBot button
 2. WP TipBot in the widget area
 3. WP TipBot shortcode in the Gutenberg post editor
+4. Main settings page for adding default values
+5. Balance tab - showing your personal balance 
+6. Shortcode tab - description of the shortcode attributes
 
 == Changelog ==
 = 1.1.0 =
@@ -37,6 +42,7 @@ PS2: If you really like your plugin you can support us with a tip on [our site](
 * Added settings form for default attributes for the shortcode
 * Added XRPTipBot balance page in the admin
 * Tested with WordPress 5.0 and Twenty-Nineteen theme
+* Removed: redirection attribute from widget and shortcode
 
 = Small fixes =
 * 1.0.7 Fixing issue with decimal values for the tip
